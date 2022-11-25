@@ -1,0 +1,30 @@
+.balls {
+    width: 40px;
+    height: 40px;
+    
+    input {
+        font: {
+            size: 0.8rem;
+            weight: 700;
+        }
+        color: #fff;
+        line-height: 1;
+        padding: 0px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        border: none;
+        background: {
+            image: url('https://5.imimg.com/data5/MT/TS/MY-63997451/cricket-ball-500x500.jpg');
+            size: 53px 53px;
+            repeat: no-repeat;
+            position: center;
+            origin: content-box;
+        }
+
+        &:focus-visible {
+            outline: 1px;
+        }
+    }
+}
