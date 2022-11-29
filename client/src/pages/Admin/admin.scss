@@ -1,0 +1,39 @@
+.Login, .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bg {
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.digitalf5.com%2Fimages%2Fmanyavar-case-banner.jpg&f=1&nofb=1&ipt=5129d7b340341f7d97e13589b8c8c0900c983291171729105338b0d73a555ab4&ipo=images');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    filter: blur(5px);
+}
+  
+.main-logo {
+    width: 30%;
+    height: 30%;
+}
+
+.login-form {
+    margin-bottom: 80px !important;
+}
+
+.error-shake {
+    animation: horizontal-shaking 400ms linear;
+    animation-iteration-count: 2;
+    // border-color: rgb(212, 68, 68);
+    // box-shadow: 0 0 8px 4px rgba(212, 68, 68, 0.425);
+}
+
+@keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(5px) }
+    50% { transform: translateX(-5px) }
+    75% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
+}
