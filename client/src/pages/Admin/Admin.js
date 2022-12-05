@@ -1,20 +1,17 @@
-import './login.scss';
+import imgPath from './../../assets/images/admin-login-header.png';
+import './admin.scss';
 
-import {useRef, useState, useEffect, useContext} from 'react';
+import {useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-function Login({isLoggedIn, setIsLogin}) {
+export default function Admin({isLoggedIn, setIsLogin}) {
     const loginRef = useRef(null);
     let [username, setUsername] = useState(""); 
     let [password, setPassword] = useState("");
     let [login, setLogin] = useState(null);
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     loginRef.current.classList.remove('error-shake');
-    // }, [isLoggedIn]);
-
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         const user = "admin";
         const pass = "abcd";
         console.log(username);
@@ -57,22 +54,23 @@ function Login({isLoggedIn, setIsLogin}) {
     }
 
     return (
-        <div className="Login">
+        <div className="Login d-flex justify-content-center align-items-center">
+            <div className="bg"></div>
             <div className="container">
-                <div className="col-6 mx-auto login-container" ref={loginRef}>  
+                <div className="col-5 mx-auto login-container" ref={loginRef}>  
                     <div className="card text-center">
                         <div className="card-body">
-                        <img className="img-fluid main-logo" alt="Manyavar Logo" src="https://www.exchange4media.com/news-photo/98693-manyavarf.jpg" />
-                        <h2 className="card-title mt-3">Manyavar Blah Blah</h2>
+                        <img className="img-fluid main-logo" alt="Manyavar Logo" src={imgPath} />
+                        <h2 className="card-title mt-3">Admin</h2>
                             <form className="login-form row mx-auto my-5">
                                 <div className="col-6 offset-3">
                                     <p className="mb-4 text-start">Please login to your account</p>
                                     {login !== false ? '': (<span className="text-danger">Incorrect username or password</span>)}
                                 </div>
                                 <div className="row offset-3 col-6">
-                                    <input type="text" className="col-6 form-control mb-4" id="username" placeholder="Username" value={username} onChange={usernameChanged}/>
-                                    <input type="password" className="col-6 form-control mb-4" id="password" placeholder="Password" value={password} onChange={passwordChanged} />
-                                    <button className="btn btn-primary btn-block w-100 mb-3" type="button" onClick={handleSubmit}>Login</button>
+                                    <input type="text" className="col-6 form-control mb-4" id="username" required placeholder="Username" value={username} onChange={usernameChanged}/>
+                                    <input type="password" className="col-6 form-control mb-4" id="password" required placeholder="Password" value={password} onChange={passwordChanged} />
+                                    <button className="btn login-btn btn-block w-100 mb-3" type="button" onClick={handleSubmit}>Login</button>
                                 </div>
                             </form>
                         </div>
@@ -82,5 +80,3 @@ function Login({isLoggedIn, setIsLogin}) {
         </div>
     );
 }
-
-export default Login;

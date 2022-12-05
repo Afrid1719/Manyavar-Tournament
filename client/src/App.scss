@@ -1,0 +1,20 @@
+@use "sass:map";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// @debug $theme-colors;
+$app-primary: #fffbf2;
+$app-secondary: #511d00;
+$theme-colors: map.set($theme-colors, "app-primary", $app-primary);
+$theme-colors: map.set($theme-colors, "app-secondary", $app-secondary);
+
+* {
+    color: #140202;
+}
+
+.btn, .btn:hover, .btn:active {
+    background-color: #511d00 !important;
+    color: #fff !important;
+    border-color: #511d00 !important;
+}
