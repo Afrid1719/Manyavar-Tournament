@@ -1,5 +1,7 @@
 import moment from "moment";
+import { Link } from "react-router-dom";
 import './home.scss';
+
 export default function Home() {
     let matchesData = [
         {
@@ -119,6 +121,7 @@ export default function Home() {
     let matches = matchesData.map((item, index) => <MatchCard data={item} key={`match-${index}`} />);
     return (
         <div className="container">
+            <h2 className="matches-heading text-center pt-4">Matches</h2>
             <div className="cards-container py-3">
                 {matches}
             </div>
@@ -129,9 +132,9 @@ export default function Home() {
 function MatchCard({data}) {
     return (
         <div className="card match-card m-3">
-            <div className="card-header text-center">
-                <h5>{`Match ${data.matchNumber}`}</h5>
-                <span>{moment(data.date).format("MMMM Do YYYY, h:mm a")}</span>
+            <div className="text-center">
+                <h4 className="card-heading pt-4"><Link className="match-link" to="#">{`Match ${data.matchNumber}`}</Link></h4>
+                <span className="match-datetime">{moment(data.date).format("MMMM Do YYYY, h:mm a")}</span>
             </div>
             <div className="card-body">
                 <table className="table">
@@ -153,7 +156,7 @@ function MatchCard({data}) {
                         </tr>
                     </tbody>
                 </table>
-                <div className="footer">
+                <div className="match-card-footer">
                     {/*TODO: Result of ended match*/}
                     {!!data.secondInnings && `${data.secondInnings} needs ${toWinData(data).runs} runs from ${toWinData(data).balls} balls.`}
                 </div>

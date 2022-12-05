@@ -11,13 +11,25 @@
 }
 
 .match-card {
-    .card-header {
-        span {
-            font-size: 0.8rem;
-        }
+    border: none; 
+    background: {
+        image: url('/assets/images/match-cards-bg.jpg');
+        size: cover;
+        repeat: no-repeat;
     }
-    .footer {
-        font-size: 1.2rem;
+    box-shadow: 0 0.5rem 1rem rgb(193, 115, 60) !important;
+
+    .match-link {
+        color: #140202;
+        text-decoration: none;
+    }
+
+    .match-datetime {
+        font-size: 0.8rem;
+    }
+
+    .match-card-footer {
+        font-size: 1rem;
     }
 
     .table {

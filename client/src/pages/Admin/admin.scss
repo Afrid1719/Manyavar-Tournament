@@ -7,7 +7,7 @@
 }
 
 .bg {
-    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.digitalf5.com%2Fimages%2Fmanyavar-case-banner.jpg&f=1&nofb=1&ipt=5129d7b340341f7d97e13589b8c8c0900c983291171729105338b0d73a555ab4&ipo=images');
+    background-image: url('/assets/images/admin-login-bg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -19,8 +19,24 @@
     height: 30%;
 }
 
+.login-container {
+    .card {
+        background-color: #fffbf2;
+    }
+
+    .login-btn {
+        background-color: #511d00;
+        color: #fff;
+    }
+}
+
 .login-form {
     margin-bottom: 80px !important;
+
+    input:focus {
+        box-shadow: none;
+        border: 2px solid #511d00;
+    }
 }
 
 .error-shake {

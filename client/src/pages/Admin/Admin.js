@@ -1,3 +1,4 @@
+import imgPath from './../../assets/images/admin-login-header.png';
 import './admin.scss';
 
 import {useRef, useState} from 'react';
@@ -59,8 +60,8 @@ export default function Admin({isLoggedIn, setIsLogin}) {
                 <div className="col-5 mx-auto login-container" ref={loginRef}>  
                     <div className="card text-center">
                         <div className="card-body">
-                        <img className="img-fluid main-logo" alt="Manyavar Logo" src="https://www.exchange4media.com/news-photo/98693-manyavarf.jpg" />
-                        <h2 className="card-title mt-3">Manyavar Blah Blah</h2>
+                        <img className="img-fluid main-logo" alt="Manyavar Logo" src={imgPath} />
+                        <h2 className="card-title mt-3">Admin</h2>
                             <form className="login-form row mx-auto my-5">
                                 <div className="col-6 offset-3">
                                     <p className="mb-4 text-start">Please login to your account</p>
@@ -69,7 +70,7 @@ export default function Admin({isLoggedIn, setIsLogin}) {
                                 <div className="row offset-3 col-6">
                                     <input type="text" className="col-6 form-control mb-4" id="username" required placeholder="Username" value={username} onChange={usernameChanged}/>
                                     <input type="password" className="col-6 form-control mb-4" id="password" required placeholder="Password" value={password} onChange={passwordChanged} />
-                                    <button className="btn btn-primary btn-block w-100 mb-3" type="button" onClick={handleSubmit}>Login</button>
+                                    <button className="btn login-btn btn-block w-100 mb-3" type="button" onClick={handleSubmit}>Login</button>
                                 </div>
                             </form>
                         </div>

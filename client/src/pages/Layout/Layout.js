@@ -1,11 +1,11 @@
 import {Outlet, Link} from "react-router-dom";
-
+import moment from "moment";
 import "./layout.scss";
 
 export default function Layout() {
     return (
         <>
-            <nav className="navbar navbar-expand-lg py-0">
+            <nav className="navbar navbar-expand-lg py-2">
                 <div className="container-fluid">
                     <Link className="navbar-brand ms-3" to="#">
                         <img src="https://static01.manyavar.com/uploads/images/manvayar-logo-icon-new.png" alt="Manayavar logo from nav" />
@@ -36,6 +36,13 @@ export default function Layout() {
                 </div>
             </nav>
             <Outlet />
+            <footer className="footer container-fluid p-3">
+                <div className="mx-auto text-center">
+                    <span className="d-inline-block">No Copyrights Reserved</span>
+                    <span className="d-inline-block px-2">@</span>
+                    <small>{moment().format("MMMM Do YYYY")}</small>
+                </div>
+            </footer>
         </>
     );
 }

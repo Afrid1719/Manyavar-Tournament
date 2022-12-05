@@ -3,6 +3,7 @@ import Admin from './pages/Admin/Admin';
 import Home from './pages/Home/Home';
 import Layout from './pages/Layout/Layout';
 import {useState} from 'react';
+import './App.scss';
 
 function App() {
   let [isLoggedIn, setIsLogin] = useState(false);
