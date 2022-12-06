@@ -3,6 +3,7 @@ import Admin from './pages/Admin/Admin';
 import Home from './pages/Home/Home';
 import Layout from './pages/Layout/Layout';
 import {useState} from 'react';
+import Scoring from './pages/Scoring/Scoring';
 import './App.scss';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route exact path="/admin" element={<Admin isLogin={isLoggedIn} setIsLogin={setIsLogin} />} />
           <Route path="/" element={<Layout />}>
             <Route index exact path="" element={<Home />} />
+            <Route path="scoreboard" element={<Scoring />} />
           </Route>
       </Routes>
     </BrowserRouter>
