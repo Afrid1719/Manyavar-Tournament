@@ -1,12 +1,17 @@
 .navbar {
     background-color: #fffbf2;
 
-    a {
+    a, .logout-btn {
         color: #5e3f3f;
     }
 
     .nav-link.active {
         font-weight: 500;
+    }
+
+    .logout-btn {
+        background: unset;
+        border: unset;
     }
 }
 

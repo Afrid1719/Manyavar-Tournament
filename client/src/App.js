@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route exact path="/admin" element={<Admin isLogin={isLoggedIn} setIsLogin={setIsLogin} />} />
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout isAdmin={isLoggedIn} setIsAdmin={setIsLogin} />}>
             <Route index exact path="" element={<Home />} />
             <Route path="scoreboard" element={<Scoring />} />
           </Route>

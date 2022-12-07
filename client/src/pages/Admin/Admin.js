@@ -1,45 +1,38 @@
+import BounceLoader from 'react-spinners/BounceLoader';
 import imgPath from './../../assets/images/admin-login-header.png';
 import './admin.scss';
 
 import {useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import { authenticate } from '../../endpoints/admin';
 
-export default function Admin({isLoggedIn, setIsLogin}) {
+export default function Admin({setIsLogin}) {
     const loginRef = useRef(null);
     let [username, setUsername] = useState(""); 
     let [password, setPassword] = useState("");
     let [login, setLogin] = useState(null);
+    let [isLoading, setLoading] = useState(null);
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        const user = "admin";
-        const pass = "abcd";
-        console.log(username);
-        console.log(password);
+    const handleSubmit = async () => {
+        setLoading(true);
 
-        let validateUser = new Promise((resolve, reject) => {
-            if (username === user && password === pass) resolve({success: true});
-            else resolve({success: false});
-        });
+        let response = await authenticate({username: username, password: password});
 
-        validateUser
-            .then(response => {
-                if (response.success) {
-                    setIsLogin(() => true);
-                    setLogin(() => true);
-                    navigate('/');
-                } else {
-                    setIsLogin(() => false);
-                    setLogin(() => false);
-                    loginRef.current.classList.add('error-shake');
-                    setTimeout(() => {
-                        loginRef.current.classList.remove('error-shake');
-                    }, 600);   
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        if (response.message === true) {
+            setIsLogin(() => true);
+            setLogin(() => true);
+            setLoading(false);
+            navigate('/');
+        } else {
+            setIsLogin(() => false);
+            setLogin(() => false);
+            setLoading(false);
+            loginRef.current.classList.add('error-shake');
+            setTimeout(() => {
+                loginRef.current.classList.remove('error-shake');
+            }, 600);   
+        }
         // TODO: Call login endpoint
     };
 
@@ -55,6 +48,18 @@ export default function Admin({isLoggedIn, setIsLogin}) {
 
     return (
         <div className="Login d-flex justify-content-center align-items-center">
+            {
+                isLoading && (
+                    <div className="spinner-container">
+                        <BounceLoader
+                            color="#dc3545"
+                            loading
+                            size={50}
+                            speedMultiplier={1.5}
+                        />
+                    </div>
+                )
+            }
             <div className="bg"></div>
             <div className="container">
                 <div className="col-5 mx-auto login-container" ref={loginRef}>  

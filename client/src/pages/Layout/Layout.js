@@ -1,8 +1,28 @@
-import {Outlet, Link} from "react-router-dom";
+import {Outlet, Link, useNavigate} from "react-router-dom";
 import moment from "moment";
 import "./layout.scss";
+import { logoutAdmin } from "../../endpoints/admin";
 
-export default function Layout() {
+export default function Layout({isAdmin, setIsAdmin}) {
+    const navigate = useNavigate();
+    
+    const handleLogout = async () => {
+        let response = await logoutAdmin();
+
+        if (response.message === true) {
+            setIsAdmin(false);
+            navigate('/');
+        } else {
+            alert('Unable to logout');
+        }
+    };
+    
+    const logoutForm = (
+        <form className="d-inline-block" onSubmit={handleLogout}>
+            <button type="submit" className="nav-link logout-btn">Admin Logout</button>
+        </form>
+    );
+
     return (
         <>
             <nav className="navbar navbar-expand-lg py-2">
@@ -29,7 +49,11 @@ export default function Layout() {
                                 <Link className="nav-link" to="#">About</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/admin">Admin</Link>
+                                {
+                                    isAdmin ?
+                                    logoutForm :
+                                    <Link className="nav-link" to="/admin">Admin</Link>
+                                }
                             </li>
                         </ul>
                     </div>

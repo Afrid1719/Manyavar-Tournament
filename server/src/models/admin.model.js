@@ -27,7 +27,22 @@ async function getAllAdmin() {
         });
 }
 
+async function authAdmin(user) {
+    const userFound = await AdminModel.find({username: user.username});
+    if (!userFound.length) {
+        throw new Error('User not found!!');
+    }
+    try {
+        let pass = user.password;
+        let result = await bcrypt.compare(pass, userFound[0].password);
+        return result;
+    } catch(e) {
+        throw e;
+    }
+}
+
 module.exports = {
     createAdmin,
-    getAllAdmin
+    getAllAdmin,
+    authAdmin
 }
