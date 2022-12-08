@@ -8,9 +8,9 @@ import { AuthContext } from "../../App";
 export default function Layout() {
     const navigate = useNavigate();
     const auth = useContext(AuthContext);
+
     const handleLogout = async () => {
         let response = await logoutAdmin();
-
         if (response.message === true) {
             auth.logout();
             navigate('/');
@@ -39,12 +39,12 @@ export default function Layout() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="#">Home</Link>
+                                <Link className="nav-link" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
                                 {
                                     auth.isLogin.login ?
-                                    <Link className="nav-link" to="/scoreboard">Scoring</Link> :
+                                    <Link className="nav-link" to="/scoring">Scoring</Link> :
                                     <Link className="nav-link" to="#">Link</Link>
                                 }
                             </li>

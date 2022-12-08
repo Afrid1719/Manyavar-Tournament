@@ -54,18 +54,21 @@ async function httpAuthenticate(req, res) {
     }
     try {
         const loggedIn = await authAdmin(data);
-        if (loggedIn) {
-            req.session.user = data.username;
+        if (loggedIn.result) {
+            req.session.userId = loggedIn.adminId;
             return res.status(200).json({
-                message: true
+                message: true,
+                token: req.session.userId
             });
         }
-        return res.status(401).json({
-            message: false
+        return res.status(200).json({
+            message: false,
+            token: null
         });
     } catch (e) {
         return res.status(401).json({
-            message: e.message
+            message: e.message,
+            token: null
         });
     }
 }
@@ -73,9 +76,10 @@ async function httpAuthenticate(req, res) {
 async function httpAdminLogout(req, res) {
     req.session = null;
     return res.status(200).json({
-        message: true
+        message: true,
+        token: null
     });
-} 
+}
 
 module.exports = {
     httpCreateAdmin,
