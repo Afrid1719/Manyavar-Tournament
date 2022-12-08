@@ -2,15 +2,17 @@ import {Outlet, Link, useNavigate} from "react-router-dom";
 import moment from "moment";
 import "./layout.scss";
 import { logoutAdmin } from "../../endpoints/admin";
+import { useContext } from "react";
+import { AuthContext } from "../../App";
 
-export default function Layout({isAdmin, setIsAdmin}) {
+export default function Layout() {
     const navigate = useNavigate();
-    
+    const auth = useContext(AuthContext);
     const handleLogout = async () => {
         let response = await logoutAdmin();
 
         if (response.message === true) {
-            setIsAdmin(false);
+            auth.logout();
             navigate('/');
         } else {
             alert('Unable to logout');
@@ -40,7 +42,11 @@ export default function Layout({isAdmin, setIsAdmin}) {
                                 <Link className="nav-link active" aria-current="page" to="#">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="#">Link</Link>
+                                {
+                                    auth.isLogin.login ?
+                                    <Link className="nav-link" to="/scoreboard">Scoring</Link> :
+                                    <Link className="nav-link" to="#">Link</Link>
+                                }
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="#">Disabled</Link>
@@ -50,7 +56,7 @@ export default function Layout({isAdmin, setIsAdmin}) {
                             </li>
                             <li className="nav-item">
                                 {
-                                    isAdmin ?
+                                    auth.isLogin.login ?
                                     logoutForm :
                                     <Link className="nav-link" to="/admin">Admin</Link>
                                 }

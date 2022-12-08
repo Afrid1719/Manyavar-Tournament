@@ -48,7 +48,8 @@ async function httpAuthenticate(req, res) {
     let data = req.body;
     if (!data.username || !data.password) {
         return res.status(400).json({
-            message: "Incomplete data!!"
+            message: "Incomplete data!!",
+            token: null
         });
     }
     try {

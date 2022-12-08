@@ -35,9 +35,9 @@ async function authAdmin(user) {
     try {
         let pass = user.password;
         let result = await bcrypt.compare(pass, userFound[0].password);
-        return result;
+        return {result: result, adminId: userFound[0]._id.toString()};
     } catch(e) {
-        throw e;
+        throw new Error(e.message);
     }
 }
 

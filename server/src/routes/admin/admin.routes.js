@@ -1,11 +1,12 @@
 const express = require('express');
+const { adminSession } = require('../../utils/session');
 const router = express.Router();
-const { httpCreateAdmin, httpGetAllAdmin, httpAuthenticate, httpAdminLogout } = require('./admin.controller');
+const { httpCreateAdmin, httpGetAllAdmin, httpAuthenticate, httpAdminLogout, httpGetScoring } = require('./admin.controller');
 
 
 router.post('/', httpCreateAdmin);
 router.get('/', httpGetAllAdmin);
 router.post('/authenticate', httpAuthenticate);
-router.get('/logout', httpAdminLogout);
+router.get('/logout', adminSession, httpAdminLogout);
 
 module.exports = router;

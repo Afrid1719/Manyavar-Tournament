@@ -2,11 +2,13 @@ import BounceLoader from 'react-spinners/BounceLoader';
 import imgPath from './../../assets/images/admin-login-header.png';
 import './admin.scss';
 
-import {useRef, useState} from 'react';
+import {useContext, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import { authenticate } from '../../endpoints/admin';
+import { AuthContext } from '../../App';
 
-export default function Admin({setIsLogin}) {
+export default function Admin() {
+    const auth = useContext(AuthContext);
     const loginRef = useRef(null);
     let [username, setUsername] = useState(""); 
     let [password, setPassword] = useState("");
@@ -20,20 +22,20 @@ export default function Admin({setIsLogin}) {
         let response = await authenticate({username: username, password: password});
 
         if (response.message === true) {
-            setIsLogin(() => true);
-            setLogin(() => true);
+            setLogin(true);
+            auth.login(response.token);
             setLoading(false);
             navigate('/');
+            console.log('Here', auth);
         } else {
-            setIsLogin(() => false);
-            setLogin(() => false);
+            setLogin(false);
+            auth.logout();
             setLoading(false);
             loginRef.current.classList.add('error-shake');
             setTimeout(() => {
                 loginRef.current.classList.remove('error-shake');
             }, 600);   
         }
-        // TODO: Call login endpoint
     };
 
     const usernameChanged = (e) => {
