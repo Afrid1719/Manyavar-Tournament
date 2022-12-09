@@ -4,7 +4,7 @@ import './scoring.scss';
 
 export default function Scoreboard() {
     return (
-        <div className="scoring-page row">
+        <div className="scoring-page row p-3">
             <LeftPane />
             <RightPane />
         </div>

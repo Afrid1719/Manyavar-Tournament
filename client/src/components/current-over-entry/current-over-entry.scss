@@ -1,6 +1,10 @@
-.balls {
-    width: 40px;
-    height: 40px;
+.ball {
+    $ball-width: 45px;
+    $ball-height: 45px;
+    width: $ball-width;
+    height: $ball-height;
+    padding: 2px;
+    box-sizing: content-box;
     
     input {
         font: {
@@ -10,14 +14,14 @@
         color: #fff;
         line-height: 1;
         padding: 0px;
-        width: 40px;
-        height: 40px;
+        width: $ball-width;
+        height: $ball-height;
         border-radius: 50%;
         text-align: center;
         border: none;
         background: {
-            image: url('https://5.imimg.com/data5/MT/TS/MY-63997451/cricket-ball-500x500.jpg');
-            size: 53px 53px;
+            image: url('../../assets/images/cricket-ball.jpg');
+            size: 63px 63px;
             repeat: no-repeat;
             position: center;
             origin: content-box;

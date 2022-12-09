@@ -2,7 +2,7 @@
 export default function OversRecord({over}) {
     if(!!over) {
         let balls = over.map((item, i) => {
-            return (<div className="balls" key={i}><Ball value={item} /></div>)
+            return (<div className="ball" key={i}><Ball value={item} /></div>)
         });
 
         return (
