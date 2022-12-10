@@ -5,6 +5,7 @@ import Layout from './pages/Layout/Layout';
 import {createContext, useEffect, useState} from 'react';
 import Scoring from './pages/Scoring/Scoring';
 import './App.scss';
+import { Teams } from './pages/Teams/Teams';
 
 export const AuthContext = createContext({});
 
@@ -38,7 +39,8 @@ function App() {
             <Route exact path="/admin" element={<Admin />} />
             <Route path="/" element={<Layout />}>
               <Route index exact path="" element={<Home />} />
-              <Route path="scoring" element={<Scoring />} />
+              <Route path="/scoring" element={<Scoring />} />
+              <Route path="/teams" element={<Teams />} />
             </Route>
         </Routes>
       </BrowserRouter>

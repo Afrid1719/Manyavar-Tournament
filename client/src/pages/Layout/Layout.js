@@ -1,6 +1,7 @@
 import {Outlet, Link, useNavigate} from "react-router-dom";
 import moment from "moment";
 import "./layout.scss";
+import manyavarLogo from '../../assets/images/manyavar-logo-mini.jpg';
 import { logoutAdmin } from "../../endpoints/admin";
 import { useContext } from "react";
 import { AuthContext } from "../../App";
@@ -30,7 +31,7 @@ export default function Layout() {
             <nav className="navbar navbar-expand-lg py-2">
                 <div className="container-fluid">
                     <Link className="navbar-brand ms-3" to="#">
-                        <img src="https://static01.manyavar.com/uploads/images/manvayar-logo-icon-new.png" alt="Manayavar logo from nav" />
+                        <img src={manyavarLogo} alt="Manayavar logo from nav" />
                     </Link>
                     <div className="d-lg-none fw-bold fs-2">Manyavar</div>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,16 +42,20 @@ export default function Layout() {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/">Home</Link>
                             </li>
-                            <li className="nav-item">
-                                {
-                                    auth.isLogin.login ?
-                                    <Link className="nav-link" to="/scoring">Scoring</Link> :
-                                    <Link className="nav-link" to="#">Link</Link>
-                                }
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="#">Disabled</Link>
-                            </li>
+                            {
+                                auth.isLogin.login &&
+                                (
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/scoring">Scoring</Link>    
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/teams">Teams</Link>
+                                        </li>
+                                    </>
+                                )
+                            }
+
                             <li className="nav-item">
                                 <Link className="nav-link" to="#">About</Link>
                             </li>
