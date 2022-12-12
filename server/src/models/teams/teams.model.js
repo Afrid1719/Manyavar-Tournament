@@ -24,7 +24,33 @@ async function teamExists(id) {
 async function getAllTeams() {
     try {
         let result = await TeamModel.find({}).populate('players').exec();
-        return result
+        return result;
+    } catch (e) {
+        console.log(e.message);
+        throw new Error('Something went wrong!!');
+    }
+}
+
+async function updateTeam(id, data) {
+    try {
+        let result = await TeamModel.findByIdAndUpdate(id, {name: data.name}).exec();
+        if (!result) {
+            throw new Error('Something went wrong!!');
+        }
+        return result;
+    } catch(e) {
+        console.log(e.message);
+        throw new Error('Something went wrong!!');
+    }
+}
+
+async function deleteTeam(id) {
+    try {
+        let result = await TeamModel.findByIdAndDelete(id).exec();
+        if (!result) {
+            throw new Error('Something went wrong!!');
+        }
+        return result;
     } catch (e) {
         console.log(e.message);
         throw new Error('Something went wrong!!');
@@ -34,5 +60,7 @@ async function getAllTeams() {
 module.exports = {
     createTeam,
     getAllTeams,
-    teamExists
+    teamExists,
+    updateTeam,
+    deleteTeam
 }

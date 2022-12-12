@@ -9,3 +9,6 @@ export const adminV1Logout = `${adminV1}/logout`;
 // Scoring.
 export const scoringV1 = `${apiV1}/scoring`;
 export const saveBallV1 = `${apiV1}/scoring/current-over/save-ball`;
+
+// Teams.
+export const teamsV1 = `${apiV1}/teams`;
