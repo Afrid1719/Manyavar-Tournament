@@ -1,10 +1,22 @@
 const PlayerModel = require('./players.mongo');
+const TeamModel = require('./../teams/teams.mongo');
 
-async function createPlayer(data) {
+async function createPlayer({teamId, players}) {
     try {
-        console.log('Player', data);
-        let player = new PlayerModel(data);
-        let result = await player.save();
+        const team = await TeamModel.findById(teamId);
+        let docsToSave = [];
+        for (let player of players) {
+            if (!player.id) {
+                docsToSave.push(new PlayerModel({name: player.name, teamId: team._id}));
+            } else {
+                if (player.name === '') {
+                    docsToSave.push(await PlayerModel.findByIdAndDelete(player.id));
+                } else {
+                    docsToSave.push(await PlayerModel.findOneAndUpdate({_id: player.id, teamId: team._id}, {name: player.name}));
+                }
+            }
+        }
+        let result = await PlayerModel.bulkSave(docsToSave);
         return result;
     } catch (e) {
         console.log(e.message);

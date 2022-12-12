@@ -11,9 +11,9 @@ async function createTeam(data) {
     }
 }
 
-async function teamExists(id) {
+async function teamExists(name) {
     try {
-        let result = await TeamModel.exists({id: id});
+        let result = await TeamModel.exists({name: name});
         return result;
     } catch(e) {
         console.log(e.message);
@@ -23,7 +23,7 @@ async function teamExists(id) {
 
 async function getAllTeams() {
     try {
-        let result = await TeamModel.find({}).populate('players').exec();
+        let result = await TeamModel.find().populate('players').exec();
         return result;
     } catch (e) {
         console.log(e.message);

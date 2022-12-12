@@ -1,7 +1,5 @@
 const { createTeam, getAllTeams, teamExists, updateTeam, deleteTeam } = require('./../../models/teams/teams.model');
 
-let TEAM_ID = 0;
-
 async function httpCreateTeam(req, res) {
     let {data} = req.body;
     if (!data.name) {
@@ -10,11 +8,12 @@ async function httpCreateTeam(req, res) {
         });
     }
     try {
-        data = {
-            ...data,
-            id: ++TEAM_ID
-        };
-        let result = await teamExists(data._id);
+        if (!data.name) {
+            return res.status(400).json({
+                message: 'Incomplete data!!'
+            });
+        }
+        let result = await teamExists(data.name);
         if (!!result) {
             return res.status(200).json({
                 data: [],

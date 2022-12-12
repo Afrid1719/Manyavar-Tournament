@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 let schema = mongoose.Schema({
-    id: {
-        type: Number,
-        required: true
-    },
     name: {
         type: String,
         required: true
+    },
+    teamId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Team'
     }
 });
 

@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
 
 let schema = mongoose.Schema({
-    id: {
-        type: Number,
-        required: true
-    },
     name: {
         type: String,
         required: true
     },
     players: [{
-        type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Player'
     }]
 });
